@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>AB Testing Calculators</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand mr-3">AB Testing Calculators</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="#" class="nav-item nav-link active">Sample Size</a>
+                    <a href="#" class="nav-item nav-link">Test Duration</a>
+                    <a href="#" class="nav-item nav-link">Sanity Checks</a>
+                    <a href="#" class="nav-item nav-link">Statistical Significance</a>
+                </div>
+                <div class="navbar-nav ml-auto">
+                    <a href="#" class="nav-item nav-link">Register</a>
+                    <a href="#" class="nav-item nav-link">Login</a>
+                </div>
+            </div>
+        </div>    
+    </nav>
+    <div id="containerter" class="container">
+        <div class="row border border-dark">
+            <div id="input-1" class="col-xl-3 border border-dark">
+                <p>Columna Izquierda</p>
+                <div class="form-group">
+                    <label for="base-cr">Baseline Conversion Rate</label>
+                    <div>
+                        <input type="text" id="base-cr" class="form-control" value="20">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="min-effect">MDE</label>
+                    <div>
+                        <input type="text" id="min-effect" class="form-control" value="5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="power-value">Statistical power 1−β:</label>
+                    <form class="d-flex">
+                        <input type="range" class="custom-range" min="60" max="95" step="5" value="80" id="power-value">
+                        <p id="power-slider">80%</p>
+                    </form>
+                </div>
+                <div class="form-group">
+                    <p>Significance level α:</p>
+                    <form>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="significance-level" id="alpha90" value="0.1">
+                            <label class="form-check-label" for="alpha90">
+                                90%
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="significance-level" id="alpha95" value="0.05" checked>
+                            <label class="form-check-label" for="alpha95">
+                                95%
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="significance-level" id="alpha99" value="0.01">
+                            <label class="form-check-label" for="alpha99">
+                                99%
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="output-1" class="col-xl-9 text-center border border-dark">
+                <P>Columna Derrecha</P>
+                <div class="border border-dark">
+                    <p>The Sample size should be:</p>
+                </div>
+                <div class="border border-dark">
+                    <p id="sample-size">1030</p>
+                </div>
+                <div class="border border-dark">
+                    <p>per group</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border border-dark">
+            <div id="input-2" class="col-xl-3 border border-dark">
+                <p>Columna Izquierda</p>
+                <div class="form-group">
+                    <label for="total-traffic">Minimum traffic required</label>
+                    <div>
+                        <input type="text" id="total-traffic" class="form-control" value="2060">
+                    </div>
+                    <button id="button-copy-traffic" type="button" class="btn btn-primary">Copy from prev. calculator</button>
+                </div>
+                <div class="form-group">
+                    <label for="daily-traffic">Average Daily Traffic</label>
+                    <div>
+                        <input type="text" id="daily-traffic" class="form-control" value="250">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="split-value">Traffic split:</label>
+                    <form class="d-flex">
+                        <input type="range" class="custom-range" min="5" max="100" step="5" id="split-value" value="50">
+                        <p id="split-slider">50%</p>
+                    </form>
+                </div>
+            </div>  
+            <div id="output-2" class="col-xl-9 text-center border border-dark">
+                <div class="row">
+                    <div class="col-xl-6 border border-dark">
+                        <p>The test could run for:</p>
+                        <div class="border border-dark">
+                            <p id="total-days-all">17</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 border border-dark">
+                        <p>with a split of:</p>
+                        <div class="border border-dark">
+                            <p id="split-result">50%</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 border border-dark">
+                        <p>That translates into a total of:</p>
+                    </div>
+                    <div class="col-xl-4 border border-dark">
+                        <p>Months (28 days):</p>
+                        <div class="border border-dark">
+                            <p id="total-months">0</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 border border-dark">
+                        <p>Weeks:</p>
+                        <div class="border border-dark">
+                            <p id="total-weeks">2</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 border border-dark">
+                        <p>Days:</p>
+                        <div class="border border-dark">
+                            <p id="total-days">3</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 border border-dark">
+                        <p>Total practical traffic:</p>
+                        <div class="border border-dark">
+                            <p id="practical-traffic">2125</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border border-dark">
+            <div id="input-3" class="col-xl-3 border border-dark">
+                <p>Sanity checks for invariant metrics</p>
+                <div class="row">
+                    <div class="col-xl-12 border border-dark">
+                        <p>Step 1:</p>
+                    </div>
+                    <div class="col-xl-12 border border-dark">
+                        <div class="form-group">
+                            <p>Choose confidence level:</p>
+                            <form>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="significance-level-sanity" id="alpha90" value="0.1">
+                                    <label class="form-check-label" for="alpha90">
+                                        90%
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="significance-level-sanity" id="alpha95" value="0.05" checked>
+                                    <label class="form-check-label" for="alpha95">
+                                        95%
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="significance-level-sanity" id="alpha99" value="0.01">
+                                    <label class="form-check-label" for="alpha99">
+                                        99%
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 border border-dark">
+                        <p>Step 2:</p>
+                    </div>
+                </div>
+                <div id="test" class="row">
+                    <div id="accordion" class="myaccordion">
+                        <div class="card">
+                          <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                              <button id="button1" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Check count metrics:
+                              </button>
+                            </h5>
+                          </div>                      
+                          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-6 border border-dark">
+                                        <div class="form-group">
+                                            <label for="countControl">Control group traffic:</label>
+                                            <div>
+                                                <input type="text" id="countControl" class="form-control" value="345543">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 border border-dark">
+                                        <div class="form-group">
+                                            <label for="countExp">Experiment group traffic:</label>
+                                            <div>
+                                                <input type="text" id="countExp" class="form-control" value="344660">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 form-group">
+                                        <label for="split-value-checker">Traffic split</label>
+                                        <form class="d-flex">
+                                            <input type="range" class="custom-range" min="5" max="100" step="5" id="split-value-checker" value="50">
+                                            <p id="split-slider-checker">50%</p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                              <button id="button2" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Check probability metrics:
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-6 border border-dark">
+                                        <div class="form-group">
+                                            <label for="probControlPageviews">Control group pageviews:</label>
+                                            <div>
+                                                <input type="text" id="probControlPageviews" class="form-control" value="1000">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 border border-dark">
+                                        <div class="form-group">
+                                            <label for="probControlTraffic">Control group traffic:</label>
+                                            <div>
+                                                <input type="text" id="probControlTraffic" class="form-control" value="1000">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6 border border-dark">
+                                        <div class="form-group">
+                                            <label for="probExpPageviews">Experiment group pageviews:</label>
+                                            <div>
+                                                <input type="text" id="probExpPageviews" class="form-control" value="1000">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 border border-dark">
+                                        <div class="form-group">
+                                            <label for="probExpTraffic">Experiment group traffic:</label>
+                                            <div>
+                                                <input type="text" id="probExpTraffic" class="form-control" value="1000">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="output-3" class="col-xl-9 text-center border border-dark">
+                <div class="row">
+                    <div class="col-xl-12 text-center border border-dark">
+                        <p id="output-3-results">The difference is correct</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border border-dark">
+            <div id="input-4" class="col-xl-3 border border-dark">
+                <p>Columna Izquierda</p>
+                <div class="row">
+                    <div class="col-xl-6 border border-dark">
+                        <div class="form-group">
+                            <label for="testControlTraffic">Control group traffic:</label>
+                            <div>
+                                <input type="text" id="testControlTraffic" class="form-control" value="17293">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 border border-dark">
+                        <div class="form-group">
+                            <label for="testControlConversions">Control group conversions:</label>
+                            <div>
+                                <input type="text" id="testControlConversions" class="form-control" value="3785">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 border border-dark">
+                        <div class="form-group">
+                            <label for="testExpTraffic">Experiment group traffic:</label>
+                            <div>
+                                <input type="text" id="testExpTraffic" class="form-control" value="17260">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 border border-dark">
+                        <div class="form-group">
+                            <label for="testExpConversions">Experiment group conversions:</label>
+                            <div>
+                                <input type="text" id="testExpConversions" class="form-control" value="3423">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p>Significance level α:</p>
+                    <form>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="test-significance-level" id="alpha90" value="0.1">
+                            <label class="form-check-label" for="alpha90">
+                                90%
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="test-significance-level" id="alpha95" value="0.05" checked>
+                            <label class="form-check-label" for="alpha95">
+                                95%
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="test-significance-level" id="alpha99" value="0.01">
+                            <label class="form-check-label" for="alpha99">
+                                99%
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="output-4" class="col-xl-9 text-center border border-dark">
+                <div class="row">
+                    <div class="col-xl-12 text-center border border-dark">
+                        <p id="output-4-results">The difference is correct</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="script.js" charset="utf-8"></script>
+</body>
+</html>
