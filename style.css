@@ -6,3 +6,60 @@
   .mycard-body {
       margin: auto;
   }
+
+  .card-margins {
+      margin-bottom: 1.5rem;
+  }
+
+  .card-right {
+    padding: 0px 15px 0px 15px;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: .35rem;
+  }
+
+  .card-left-blue {
+    border-left: .25rem solid #4e73df!important;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: .35rem;
+}
+
+.card-left-green {
+    border-left: .25rem solid #1cc88a!important;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: .35rem;
+}
+
+.card-left-lightBlue {
+    border-left: .25rem solid #36b9cc!important;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: .35rem;
+}
+
+.card-left-purple {
+    border-left: .25rem solid #aa66cc!important;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: .35rem;
+}
+
+.card-item-top {
+    padding: 1rem 1.25rem 0 1.25rem!important;
+}
+
+.card-item {
+    padding: 0 1.25rem 0 1.25rem!important;
+}
